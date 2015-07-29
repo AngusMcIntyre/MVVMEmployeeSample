@@ -1,0 +1,17 @@
+﻿<Window x:Class="MVVMSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:MVVMSample.ViewModels"
+        Title="MainWindow" Height="350" Width="525" Padding="5">
+    <DockPanel LastChildFill="True" d:DataContext="{d:DesignInstance Type=vm:ShellViewModel}">
+        <ToolBar DockPanel.Dock="Top">
+            <Button Command="{Binding GenerateRandomEmployeeCommand}">Add Random Employee</Button>
+        </ToolBar>
+        <ListBox Width="200" x:Name="ListBox_Employees" DockPanel.Dock="Left" ItemsSource="{Binding Employees}" DisplayMemberPath="Number" SelectedItem="{Binding SelectedEmployee}"></ListBox>
+        <Label Content="{Binding SelectedEmployee.Number}"/>
+        <TextBox Text="{Binding SelectedEmployee.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+    </DockPanel>
+</Window>
